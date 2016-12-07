@@ -14,6 +14,7 @@ include_directories(
 )
 
 set(matrix_creator_hal_src
+<<<<<<< HEAD
     microphone_array.cpp
     matrix_driver.cpp
     humidity_sensor.cpp
@@ -34,10 +35,34 @@ target_link_libraries(matrix_creator_hal ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_THREA
 install (TARGETS matrix_creator_hal DESTINATION lib)
 
 set (matrix_creator_hal_headers
+<<<<<<< HEAD
 creator_memory_map.h  everloop.h        humidity_data.h    imu_sensor.h        pressure_data.h
 dummy_data.h          everloop_image.h  humidity_sensor.h  matrix_driver.h     pressure_sensor.h
 dummy_sensor.h        gpio_control.h    imu_data.h         microphone_array.h  wishbone_bus.h
 uv_data.h             uv_sensor.h      nfc_spi.h
+=======
+  circular_queue.h
+  creator_memory_map.h  
+  dummy_data.h          
+  dummy_sensor.h        
+  everloop.h        
+  everloop_image.h  
+  fw_data.h          
+  gpio_control.h    
+  humidity_data.h    
+  humidity_sensor.h  
+  imu_data.h         
+  imu_sensor.h        
+  matrix_driver.h     
+  mcu_firmware.h
+  microphone_array.h  
+  microphone_array_location.h
+  pressure_data.h
+  pressure_sensor.h
+  uv_data.h             
+  uv_sensor.h       
+  wishbone_bus.h
+>>>>>>> origin/master
 )
 
 install (FILES ${matrix_creator_hal_headers} DESTINATION include/matrix_hal)
