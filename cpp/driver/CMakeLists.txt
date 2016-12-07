@@ -14,18 +14,18 @@ include_directories(
 )
 
 set(matrix_creator_hal_src
-<<<<<<< HEAD
-    microphone_array.cpp
-    matrix_driver.cpp
-    humidity_sensor.cpp
-    imu_sensor.cpp
-    pressure_sensor.cpp
-    uv_sensor.cpp
-    dummy_sensor.cpp
-    gpio_control.cpp
-    everloop.cpp
-    wishbone_bus.cpp
-    nfc_spi.cpp
+  dummy_sensor.cpp
+  everloop.cpp
+  gpio_control.cpp
+  humidity_sensor.cpp
+  imu_sensor.cpp
+  matrix_driver.cpp
+  mcu_firmware.cpp
+  microphone_array.cpp
+  pressure_sensor.cpp
+  uv_sensor.cpp
+  wishbone_bus.cpp
+  nfc_spi.cpp
 )
 
 add_library(matrix_creator_hal ${matrix_creator_hal_src})
@@ -35,12 +35,6 @@ target_link_libraries(matrix_creator_hal ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_THREA
 install (TARGETS matrix_creator_hal DESTINATION lib)
 
 set (matrix_creator_hal_headers
-<<<<<<< HEAD
-creator_memory_map.h  everloop.h        humidity_data.h    imu_sensor.h        pressure_data.h
-dummy_data.h          everloop_image.h  humidity_sensor.h  matrix_driver.h     pressure_sensor.h
-dummy_sensor.h        gpio_control.h    imu_data.h         microphone_array.h  wishbone_bus.h
-uv_data.h             uv_sensor.h      nfc_spi.h
-=======
   circular_queue.h
   creator_memory_map.h  
   dummy_data.h          
@@ -62,7 +56,7 @@ uv_data.h             uv_sensor.h      nfc_spi.h
   uv_data.h             
   uv_sensor.h       
   wishbone_bus.h
->>>>>>> origin/master
+  nfc_spi.h
 )
 
 install (FILES ${matrix_creator_hal_headers} DESTINATION include/matrix_hal)
