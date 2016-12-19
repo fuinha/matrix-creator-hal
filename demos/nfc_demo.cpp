@@ -37,24 +37,22 @@ int main() {
   unsigned char rx[2];
   nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(tx)/sizeof(uint16_t));
   std::cout << "Read Data : " << std::hex << (int)rx[0] <<" :" << (int)rx[0] << std::endl; 
-  unsigned char data_tx [2];
-  unsigned char data_rx [2];
   
   tx[0]= 0x12;  
   tx[1]= 0x01;
-  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(data_tx)/sizeof(uint16_t));
+  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(tx)/sizeof(uint16_t));
   memset(rx,0,sizeof rx);
   tx[0]= 0x94;
   tx[1]= 0x00;
-  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(data_tx)/sizeof(uint16_t));
+  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(tx)/sizeof(uint16_t));
   std::cout << "Read Data : " << std::hex << (int)rx[0] <<" :" << (int)rx[0] << std::endl;
   tx[0]= 0x12;
   tx[1]= 0x02;
-  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(data_tx)/sizeof(uint16_t));
+  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(tx)/sizeof(uint16_t));
   memset(rx,0,sizeof rx);
   tx[0]= 0x94;
   tx[1]= 0x00;
-  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(data_tx)/sizeof(uint16_t));
+  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(tx)/sizeof(uint16_t));
   std::cout << "Read Data : " << std::hex << (int)rx[0] <<" :" << (int)rx[0] << std::endl;
 
   unsigned char FIFO_tx[5] = {0x12,0x01,0x02,0x03,0x04};
@@ -72,7 +70,7 @@ int main() {
   memset(rx,0,sizeof rx);
   tx[0]= 0x94;
   tx[1]= 0x00;
-  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(data_tx)/sizeof(uint16_t));
+  nfc.BurstTransfer(tx,rx,sizeof(tx));
   std::cout << "Read Data : " << std::hex << (int)rx[0] <<" :" << (int)rx[0] << std::endl;
 
 
