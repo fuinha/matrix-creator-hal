@@ -17,6 +17,8 @@
 
 #include <unistd.h>
 #include <iostream>
+#include <stdio.h>
+#include <string.h>
 
 #include "../cpp/driver/nfc_spi.h"
 #include "../cpp/driver/wishbone_bus.h"
@@ -29,10 +31,52 @@ int main() {
  
   hal::NFCSpi nfc;
   nfc.Setup(&bus);
-  uint8_t tx[2] = {0x04,0x00};
-  uint8_t rx[2];
-  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,1);
-  std::cout << "Read Data : " << std::hex  << (int) rx[1] << (int)rx[0] << std::endl; 
+  nfc.Reset();
+  nfc.Reset(); 
+  unsigned char tx[2] = {0x94,0x00}; //Read FIFO status
+  unsigned char rx[2];
+  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(tx)/sizeof(uint16_t));
+  std::cout << "Read Data : " << std::hex << (int)rx[0] <<" :" << (int)rx[0] << std::endl; 
+  unsigned char data_tx [2];
+  unsigned char data_rx [2];
+  
+  tx[0]= 0x12;  
+  tx[1]= 0x01;
+  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(data_tx)/sizeof(uint16_t));
+  memset(rx,0,sizeof rx);
+  tx[0]= 0x94;
+  tx[1]= 0x00;
+  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(data_tx)/sizeof(uint16_t));
+  std::cout << "Read Data : " << std::hex << (int)rx[0] <<" :" << (int)rx[0] << std::endl;
+  tx[0]= 0x12;
+  tx[1]= 0x02;
+  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(data_tx)/sizeof(uint16_t));
+  memset(rx,0,sizeof rx);
+  tx[0]= 0x94;
+  tx[1]= 0x00;
+  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(data_tx)/sizeof(uint16_t));
+  std::cout << "Read Data : " << std::hex << (int)rx[0] <<" :" << (int)rx[0] << std::endl;
+
+  unsigned char FIFO_tx[5] = {0x12,0x01,0x02,0x03,0x04};
+  unsigned char FIFO_rx[5];
+  nfc.BurstTransfer(FIFO_tx,FIFO_rx,sizeof(FIFO_tx));
+
+
+ /* int length = sizeof(FIFO_tx); 
+  for (int i = 1; i < length; i++) {
+    data_tx[0] = FIFO_tx[0];
+    data_tx[1] = FIFO_tx[i]; 
+    nfc.Transfer((uint16_t *)data_tx,(uint16_t *)data_rx,sizeof(data_tx)/sizeof(uint16_t));
+  }
+  */
+  memset(rx,0,sizeof rx);
+  tx[0]= 0x94;
+  tx[1]= 0x00;
+  nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,sizeof(data_tx)/sizeof(uint16_t));
+  std::cout << "Read Data : " << std::hex << (int)rx[0] <<" :" << (int)rx[0] << std::endl;
+
+
+  
   //tx[0] = 0x8006; 
   //nfc.Transfer((uint16_t *)tx,(uint16_t *)rx,1);
   //std::cout << "Read Data : " << std::hex  <<  rx[0]  << std::endl; 

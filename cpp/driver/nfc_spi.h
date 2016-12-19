@@ -23,7 +23,7 @@
 
 const uint32_t DATA_ADDR = 0;
 const uint32_t BUSY_ADDR = 1;
-const uint32_t CS_ADDR  = 2;     
+const uint32_t CS_ADDR = 2;
 const uint32_t DIVISOR_ADDR = 3;
 const uint32_t NRST_ADDR = 4;
 
@@ -34,8 +34,11 @@ class NFCSpi : public MatrixDriver {
   NFCSpi();
   bool Init();
   bool Reset();
-  bool Transfer(uint16_t * txData, uint16_t * rxData, uint16_t length);
+  bool Transfer(uint16_t *txData, uint16_t *rxData, uint16_t length);
+  bool BurstTransfer(unsigned char *txData, unsigned char *rxData,
+                     uint16_t length);
   void Setup(WishboneBus *wishbone);
+
  private:
   bool SetCS();
   bool ClearCS();
@@ -45,4 +48,3 @@ class NFCSpi : public MatrixDriver {
 };
 };      // namespace matrix_hal
 #endif  // CPP_DRIVER_PRESSURE_SENSOR_H_
-
