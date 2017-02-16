@@ -74,58 +74,33 @@ static ps_decoder_t *ps_;
 static cmd_ln_t *config_;
 
 void process_rules(const char *hyp) {
-  const std::string cmd_ever = "./everloop_demo &";
-  const std::string cmd_arc = "./arc_demo &";
-  const std::string cmd_ipaddr = "./ipaddress_demo &";
-  const std::string cmd_clear = "./clear_demo &";
-  const std::string cmd_halt = "sudo halt";
-  const std::string cmd_timer = "./timer_demo &";
-  const std::string cmd_timer1 = "./timer_demo 60 &";
-  const std::string cmd_timer2 = "./timer_demo 120 &";
-  const std::string cmd_timer3 = "./timer_demo 180 &";
-  const std::string cmd_timer4 = "./timer_demo 240 &";
-  const std::string cmd_timer5 = "./timer_demo 300 &";
-  const std::string cmd_timer10 = "./timer_demo 600 &";
-  const std::string cmd_timer10s = "./timer_demo 10 &";
-  const std::string cmd_stop = "killall everloop_demo arc_demo timer_demo &";
+  const std::string cmd_on = "node on.js &";
+  const std::string cmd_blue = "node blue.js &";
+  const std::string cmd_red = "node red.js &";
+  const std::string cmd_white = "node white.js &";
+  const std::string cmd_pink = "node pink.js &";
+  const std::string cmd_green = "node green.js &";
+  const std::string cmd_yellow = "node yellow.js &";
+  const std::string cmd_off = "node off.js &";
 
   printf("match: %s\n", hyp);
-  if (std::strcmp(hyp, "MATRIX EVERLOOP") == 0)
-    system(cmd_ever.c_str());
-  if (std::strcmp(hyp, "MATRIX ARC") == 0)
-    system(cmd_arc.c_str());
-  if (std::strcmp(hyp, "MATRIX STOP") == 0)
-    system(cmd_stop.c_str());
-  if (std::strcmp(hyp, "MATRIX IPADDRESS") == 0)
-    system(cmd_ipaddr.c_str());
-  if (std::strcmp(hyp, "MATRIX GAME TIME") == 0)
-    system(cmd_timer.c_str());
-  if (std::strcmp(hyp, "MATRIX ONE MINUTE") == 0)
-    system(cmd_timer1.c_str());
-  if (std::strcmp(hyp, "MATRIX TWO MINUTES") == 0)
-    system(cmd_timer2.c_str());
-  if (std::strcmp(hyp, "MATRIX THREE MINUTES") == 0)
-    system(cmd_timer3.c_str());
-  if (std::strcmp(hyp, "MATRIX FOUR MINUTES") == 0)
-    system(cmd_timer4.c_str());
-  if (std::strcmp(hyp, "MATRIX FIVE MINUTES") == 0)
-    system(cmd_timer5.c_str());
-  if (std::strcmp(hyp, "MATRIX TEN MINUTES") == 0)
-    system(cmd_timer10.c_str());
-  if (std::strcmp(hyp, "MATRIX TEN SECONDS") == 0)
-    system(cmd_timer10s.c_str());
+  if (std::strcmp(hyp, "MATRIX LIGHTS ON") == 0)
+    system(cmd_on.c_str());
+  if (std::strcmp(hyp, "MATRIX LIGHTS OFF") == 0)
+    system(cmd_off.c_str());
+  if (std::strcmp(hyp, "MATRIX LIGHTS BLUE") == 0)
+    system(cmd_blue.c_str());
+  if (std::strcmp(hyp, "MATRIX LIGHTS RED") == 0)
+    system(cmd_red.c_str());
+  if (std::strcmp(hyp, "MATRIX LIGHTS PINK") == 0)
+    system(cmd_pink.c_str());
+  if (std::strcmp(hyp, "MATRIX LIGHTS GREEN") == 0)
+    system(cmd_green.c_str());
+  if (std::strcmp(hyp, "MATRIX LIGHTS YELLOW") == 0)
+    system(cmd_yellow.c_str());
+  if (std::strcmp(hyp, "MATRIX LIGHTS WHITE") == 0)
+    system(cmd_white.c_str());
 
-  if (std::strcmp(hyp, "MATRIX CLEAR") == 0) {
-    system(cmd_stop.c_str());
-    system(cmd_clear.c_str());
-    system(cmd_clear.c_str());
-  }
-  if (std::strcmp(hyp, "MATRIX SHUTDOWN NOW") == 0) {
-    system(cmd_stop.c_str());
-    system(cmd_clear.c_str());
-    system(cmd_clear.c_str());
-    system(cmd_halt.c_str());
-  }
 }
 
 /* Sleep for specified msec */
